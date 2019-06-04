@@ -12,15 +12,27 @@ class Book
                    PG.connect(dbname: 'bookmark_manager')
                end
     result = connection.exec('SELECT * FROM bookmarks;')
-    result.map { |bookmark| bookmark['url'] }
-end
+    result.map { |bookmark| bookmark['title'] }
+   #  urls = []
+   #    result = connection.exec('SELECT * FROM bookmarks;')
+   #    result.map { |bookmark|
+   #   url = []
+   #   url << bookmark['url']
+   #   url << bookmark['title']
+   #   urls << url }
+   end
 
-  def self.add(bookmark)
+   # <a href=<&=url%><%=title></a>
+   # <% @bookmark.each do |url|%>
+   #  <a href="<%=url[0]%>"><%=url[1]%></a>
+   # <% end%>
+
+  def self.add(bookmark, title)
     connection = if ENV['RACK_ENV'] == 'test'
                    PG.connect(dbname: 'bookmark_manager_test')
                  else
                    PG.connect(dbname: 'bookmark_manager')
                end
-    connection.exec("INSERT INTO bookmarks (url) VALUES ('#{bookmark}')")
+    connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark}','#{title}')")
   end
 end

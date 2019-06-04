@@ -9,20 +9,18 @@ end
 
 feature 'viewing bookmarks' do
   scenario 'view bookmarks on page' do
-    truncate
     prepare_table
     visit('/bookmarks')
-    expect(page).to have_content('http://askjeeves.com')
+    expect(page).to have_content('ASK JEEVES')
   end
-end
 
-feature 'adding a new bookmark' do
-  scenario 'user provides name/url and saves address to list' do
-    truncate
+
+  scenario 'user provides title with url and saves to list' do
     prepare_table
-    visit('/bookmarks')
+    visit('bookmarks')
+    fill_in 'title', with: 'ZOINKS'
     fill_in 'url', with: 'http://www.zoinks.com'
     click_button 'add'
-    expect(page).to have_content('http://www.zoinks.com')
+    expect(page).to have_content('ZOINKS')
   end
 end

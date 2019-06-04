@@ -2,11 +2,10 @@
 
 describe '.all' do
   it 'returns a list of bookmarks' do
-    truncate
     prepare_table
     bookmark = Book.all
-    expect(bookmark).to include('http://askjeeves.com')
-    expect(bookmark).to include('http://www.makersacademy.com')
-    expect(bookmark).to include('http://google.com')
+    expect(bookmark).to include('ASK JEEVES')
+    expect(bookmark).to include('MAKERS')
+    expect(bookmark).to include('GOOGLE')
   end
 end

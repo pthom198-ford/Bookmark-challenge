@@ -14,3 +14,7 @@ User stories
 
 ---------------------
 
+<% @bookmark.each do |title, url|%>
+  <li><%= bookmark %></li>
+  <% end%>
+<a href=<&=url%><%=title></a>
