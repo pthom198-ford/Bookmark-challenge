@@ -12,5 +12,10 @@ class Bookmark < Sinatra::Application
     erb :bookmark
   end
 
+  post '/new_bookmark' do
+    Book.add(params[:bookmark])
+    redirect('/bookmarks')
+  end
+
 
 end

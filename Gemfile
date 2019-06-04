@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
+gem 'capybara'
 gem 'pg'
 gem 'rspec'
-gem 'sinatra'
-gem 'shotgun'
-gem 'capybara'
 gem 'selenium-webdriver'
+gem 'shotgun'
+gem 'sinatra'
