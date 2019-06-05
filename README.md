@@ -13,8 +13,3 @@ User stories
    I would like to provide the url/name of a site and click an add button to save it to my list
 
 ---------------------
-
-<% @bookmark.each do |title, url|%>
-  <li><%= bookmark %></li>
-  <% end%>
-<a href=<&=url%><%=title></a>

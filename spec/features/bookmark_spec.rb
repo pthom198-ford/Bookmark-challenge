@@ -23,4 +23,11 @@ feature 'viewing bookmarks' do
     click_button 'add'
     expect(page).to have_content('ZOINKS')
   end
+
+  scenario 'user can click title and goes to website' do
+    prepare_table
+    visit('bookmarks')
+    click_link 'ASK JEEVES'
+    expect(page).to have_current_path('http://askjeeves.com', url: true)
+  end
 end

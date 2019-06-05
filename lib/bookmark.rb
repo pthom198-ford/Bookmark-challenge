@@ -11,15 +11,16 @@ class Book
                  else
                    PG.connect(dbname: 'bookmark_manager')
                end
-    result = connection.exec('SELECT * FROM bookmarks;')
-    result.map { |bookmark| bookmark['title'] }
-   #  urls = []
-   #    result = connection.exec('SELECT * FROM bookmarks;')
-   #    result.map { |bookmark|
-   #   url = []
-   #   url << bookmark['url']
-   #   url << bookmark['title']
-   #   urls << url }
+    # result = connection.exec("SELECT * FROM bookmarks;")
+    # result.map { |bookmark| bookmark['title'] }
+    urls = []
+      result = connection.exec('SELECT * FROM bookmarks;')
+      result.map { |bookmark|
+     url = []
+     url << bookmark['url']
+     url << bookmark['title']
+     urls << url }
+     urls
    end
 
    # <a href=<&=url%><%=title></a>
