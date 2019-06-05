@@ -36,4 +36,13 @@ class Book
                end
     connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark}','#{title}')")
   end
+
+  def self.delete(title)
+    connection = if ENV['RACK_ENV'] == 'test'
+                   PG.connect(dbname: 'bookmark_manager_test')
+                 else
+                   PG.connect(dbname: 'bookmark_manager')
+               end
+    connection.exec("DELETE FROM bookmarks WHERE title = '#{title}'")
+  end
 end

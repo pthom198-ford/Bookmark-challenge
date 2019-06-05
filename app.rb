@@ -13,8 +13,15 @@ class Bookmark < Sinatra::Application
   end
 
   post '/new_bookmark' do
+    
     Book.add(params[:bookmark], params[:title])
     redirect('/bookmarks')
+  end
+
+  post '/delete' do
+    Book.delete(params[:title])
+    redirect('/bookmarks')
+
   end
 
 

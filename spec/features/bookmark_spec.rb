@@ -30,4 +30,12 @@ feature 'viewing bookmarks' do
     click_link 'ASK JEEVES'
     expect(page).to have_current_path('http://askjeeves.com', url: true)
   end
+
+  scenario 'user provides title and the bookmark get deleted' do
+    prepare_table
+    visit('/bookmarks')
+    fill_in 'title', with: 'ASK JEEVES'
+    click_button "Delete"
+    expect(page).to_not have_content('ASK JEEVES')
+  end
 end
