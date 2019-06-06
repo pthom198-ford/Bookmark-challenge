@@ -3,8 +3,13 @@
 require 'pg'
 
 class Book
-  # attr_reader :bookmarks
+   attr_reader :id, :url, :title
 
+  def initialize(id, url, title)
+    @id = id
+    @title = title
+    @url = url
+  end
   def self.all
     connection = if ENV['RACK_ENV'] == 'test'
                    PG.connect(dbname: 'bookmark_manager_test')
@@ -16,11 +21,13 @@ class Book
     urls = []
       result = connection.exec('SELECT * FROM bookmarks;')
       result.map { |bookmark|
-     url = []
-     url << bookmark['url']
-     url << bookmark['title']
-     urls << url }
-     urls
+        Book.new(bookmark['id'], bookmark['url'], bookmark['title'])
+      }
+    #  url = []
+    #  url << bookmark['url']
+    #  url << bookmark['title']
+    #  urls << url }
+    #  urls
    end
 
    # <a href=<&=url%><%=title></a>
@@ -34,7 +41,8 @@ class Book
                  else
                    PG.connect(dbname: 'bookmark_manager')
                end
-    connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark}','#{title}')")
+    new_bookmark = connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark}','#{title}') RETURNING id, url, title")
+    Book.new(new_bookmark[0]['id'], new_bookmark[0]['url'], new_bookmark[0]['title'])
   end
 
   def self.delete(title)

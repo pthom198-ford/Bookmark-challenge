@@ -4,9 +4,8 @@ describe '.all' do
   it 'returns a list of bookmarks' do
     prepare_table
     bookmark = Book.all
-    expect(bookmark[0]).to include('ASK JEEVES')
-    expect(bookmark[1]).to include('MAKERS')
-    expect(bookmark[2]).to include('GOOGLE')
+    expect(bookmark.last.title).to include('GOOGLE')
+     expect(bookmark.first.title).to include('ASK JEEVES')
   end
 end
 

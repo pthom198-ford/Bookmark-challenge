@@ -17,7 +17,7 @@ feature 'viewing bookmarks' do
 
   scenario 'user provides title with url and saves to list' do
     prepare_table
-    visit('bookmarks')
+    visit('/bookmarks')
     fill_in 'title', with: 'ZOINKS'
     fill_in 'url', with: 'http://www.zoinks.com'
     click_button 'add'
@@ -26,7 +26,7 @@ feature 'viewing bookmarks' do
 
   scenario 'user can click title and goes to website' do
     prepare_table
-    visit('bookmarks')
+    visit('/bookmarks')
     click_link 'ASK JEEVES'
     expect(page).to have_current_path('http://askjeeves.com', url: true)
   end
